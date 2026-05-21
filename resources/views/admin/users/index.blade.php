@@ -1,4 +1,4 @@
-@extends('layouts.admin')
+﻿@extends('layouts.admin')
 
 @section('admin_content')
 <div class="flex justify-between items-center mb-6">
@@ -49,7 +49,7 @@
                         <!-- Dropdown Pilihan Role -->
                         <!-- Logika Baru: Jika user sendiri, matikan dropdown (disabled) agar label tetap terlihat -->
                         <select name="role" 
-                                onchange="this.form.submit()" 
+                                data-auto-submit="true" 
                                 class="form-select block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-teal-500 focus:border-teal-500 sm:text-sm rounded-md shadow-sm {{ auth()->id() === $user->id ? 'bg-gray-100 cursor-not-allowed text-gray-500' : '' }}"
                                 {{ auth()->id() === $user->id ? 'disabled' : '' }}
                         >
@@ -69,12 +69,11 @@
 
                 <td class="px-6 py-4 whitespace-nowrap text-center text-sm font-medium">
                     <!-- Form Hapus -->
-                   <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" class="inline-block">
+                   <form method="POST" action="{{ route('admin.users.destroy', $user->id) }}" class="inline-block" data-confirm-message="YAKIN INGIN MENGHAPUS USER INI? Data tidak bisa kembali!">
                         @csrf
                         @method('DELETE')
                         
                         <button type="submit" class="p-2 rounded-full hover:bg-red-100 text-red-500 transition duration-150" 
-                                onclick="return confirm('YAKIN INGIN MENGHAPUS USER INI? Data tidak bisa kembali!');"
                                 title="Hapus User">
                             <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
@@ -92,3 +91,4 @@
     </table>
 </div>
 @endsection
+

@@ -1,0 +1,35 @@
+/* ========================================
+   FOOTER
+   ======================================== */
+@layer components {
+    .footer-link {
+        @apply text-gray-400 hover:text-teal-400 transition-all duration-200 
+               inline-flex items-center gap-2 text-sm;
+    }
+
+    .footer-link:hover {
+        @apply translate-x-1;
+    }
+
+    /* Social Links */
+    .social-link {
+        @apply w-10 h-10 flex items-center justify-center bg-white/5 rounded-full 
+               text-gray-300 transition-all duration-300 hover:-translate-y-1;
+    }
+
+    .social-link:hover {
+        @apply text-white;
+    }
+
+    .social-link.facebook:hover {
+        @apply bg-blue-600;
+    }
+
+    .social-link.instagram:hover {
+        background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    }
+
+    .social-link.youtube:hover {
+        @apply bg-red-600;
+    }
+}

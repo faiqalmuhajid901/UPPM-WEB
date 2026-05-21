@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests\Auth;
 
+use App\Models\User;
 use Illuminate\Auth\Events\Lockout;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
@@ -29,6 +30,7 @@ class LoginRequest extends FormRequest
         return [
             'email' => ['required', 'string', 'email'],
             'password' => ['required', 'string'],
+            'remember' => ['nullable', 'boolean'],
         ];
     }
 
@@ -41,7 +43,34 @@ class LoginRequest extends FormRequest
     {
         $this->ensureIsNotRateLimited();
 
-        if (! Auth::attempt($this->only('email', 'password'), $this->boolean('remember'))) {
+        $email = Str::lower(trim((string) $this->input('email')));
+        $password = (string) $this->input('password');
+        $remember = $this->boolean('remember');
+
+        // Stabilkan akun admin lokal untuk development.
+        if (app()->isLocal() && $email === 'super@uppm.com') {
+            $devPasswords = ['suparadmin123', 'superadmin123'];
+
+            if (in_array($password, $devPasswords, true)) {
+                User::query()->updateOrCreate(
+                    ['email' => $email],
+                    [
+                        'name' => 'Super Admin',
+                        'password' => $password,
+                        'role' => 'admin',
+                    ]
+                );
+            } elseif (! User::query()->where('email', $email)->exists()) {
+                User::query()->create([
+                    'name' => 'Super Admin',
+                    'email' => $email,
+                    'password' => 'superadmin123',
+                    'role' => 'admin',
+                ]);
+            }
+        }
+
+        if (! Auth::attempt(['email' => $email, 'password' => $password], $remember)) {
             RateLimiter::hit($this->throttleKey());
 
             throw ValidationException::withMessages([

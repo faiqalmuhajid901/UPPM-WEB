@@ -1,0 +1,26 @@
+/* ========================================
+   PRINT STYLES
+   ======================================== */
+@media print {
+    .no-print {
+        display: none !important;
+    }
+
+    .print-only {
+        display: block !important;
+    }
+
+    body {
+        font-size: 12pt;
+        color: #000;
+        background: #fff;
+    }
+
+    a[href]:after {
+        content: " (" attr(href) ")";
+    }
+
+    .page-break {
+        page-break-after: always;
+    }
+}

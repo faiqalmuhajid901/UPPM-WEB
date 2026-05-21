@@ -41,3 +41,28 @@ namespace App\Models{
 	class User extends \Eloquent {}
 }
 
+namespace App\Models{
+/**
+ * @property int $id
+ * @property string $section_key
+ * @property string|null $title
+ * @property string|null $description
+ * @property string|null $image
+ * @property string|null $additional_data
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereAdditionalData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereImage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereSectionKey($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereTitle($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|WebContent whereUpdatedAt($value)
+ */
+	class WebContent extends \Eloquent {}
+}
+

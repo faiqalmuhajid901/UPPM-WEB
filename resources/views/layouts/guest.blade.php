@@ -1,35 +1,64 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="csrf-token" content="{{ csrf_token() }}">
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="robots" content="noindex, nofollow">
+    
+    <title>@yield('title', 'Login') | Admin UPPM</title>
+    
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+    
+    {{-- AUTH CSS --}}
+    @vite(['resources/css/app.css', 'resources/js/app.js'])    @stack('styles')
+</head>
 
-        <title>{{ config('app.name', 'Laravel') }}</title>
-
-        <!-- Fonts -->
-        <link rel="preconnect" href="https://fonts.bunny.net">
-        <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
-
-        <!-- Scripts -->
-        @vite(['resources/css/app.css', 'resources/js/app.js'])
-    </head>
-    <body class="font-sans text-gray-900 antialiased">
-    <div class="min-h-screen flex flex-col sm:justify-center items-center pt-6 sm:pt-0 bg-slate-50">
-        
-        <div class="mb-4 transform hover:scale-105 transition duration-300">
-            <a href="/">
-                <x-application-logo class="w-20 h-20 fill-current text-gray-500" />
-            </a>
+<body class="auth-body" 
+      data-success="{{ session('success') }}" 
+      data-error="{{ session('error') }}" 
+      data-warning="{{ session('warning') }}" 
+      data-info="{{ session('info') }}"
+      data-status="{{ session('status') }}"
+      data-errors='@json($errors->all())'>
+    
+    <div class="auth-background"></div>
+    
+    <a href="{{ route('home') }}" class="back-to-home">
+        <i class="fas fa-arrow-left"></i>
+        <span>Kembali ke Website</span>
+    </a>
+    
+    <div class="auth-container">
+        <div class="auth-card">
+            
+            <div class="auth-header">
+                <a href="{{ route('home') }}" class="auth-logo">
+                    <img src="{{ asset('images/navbar_ATK.png') }}" alt="UPPM Logo" class="logo-img">
+                </a>
+                <h1 class="auth-title">@yield('heading', 'Selamat Datang')</h1>
+                <p class="auth-subtitle">@yield('subheading', 'Masuk ke Admin Panel UPPM')</p>
+            </div>
+            
+            <div id="alert-container" class="alert-container-local"></div>
+            
+            <div class="auth-content">
+                @yield('content')
+            </div>
+            
+            <div class="auth-footer">
+                <div class="auth-footer-text">
+                    <p>&copy; {{ date('Y') }} UPPM Poltek ATK. All rights reserved.</p>
+                </div>
+            </div>
+            
         </div>
-
-        <div class="w-full sm:max-w-md mt-2 px-8 py-10 bg-white shadow-2xl border-t-4 border-teal-500 overflow-hidden sm:rounded-xl">
-            {{ $slot }}
-        </div>
-        
-        {{-- BAGIAN LINK REGISTER TELAH DIHAPUS DI SINI --}}
-        
-        <p class="mt-6 text-xs text-gray-400">© {{ date('Y') }} UPPM System. All rights reserved.</p>
     </div>
+    
+        
+    @stack('scripts')
+    
 </body>
 </html>

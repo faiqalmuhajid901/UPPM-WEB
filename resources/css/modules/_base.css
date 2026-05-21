@@ -1,0 +1,31 @@
+/* ========================================
+   BASE STYLES
+   ======================================== */
+@layer base {
+    *, *::before, *::after {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html {
+        @apply scroll-smooth;
+    }
+
+    body {
+        @apply font-sans antialiased text-gray-800 bg-gray-50 m-0 p-0;
+        min-height: 100vh;
+    }
+
+    a {
+        @apply transition-colors duration-200;
+    }
+
+    img {
+        @apply max-w-full h-auto;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        @apply font-semibold text-gray-900;
+    }
+}

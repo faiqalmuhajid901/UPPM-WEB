@@ -1,0 +1,45 @@
+/* ========================================
+   ADMIN CSS VARIABLES
+   ======================================== */
+:root {
+    /* Sidebar */
+    --sidebar-width: 260px;
+    --sidebar-collapsed-width: 0px;
+    --sidebar-bg: #0f172a;
+    --sidebar-hover: #1e293b;
+    --sidebar-active: #3b82f6;
+    --sidebar-text: #94a3b8;
+    --sidebar-text-hover: #ffffff;
+    --sidebar-border: #1e293b;
+
+    /* Header */
+    --header-height: 64px;
+    --header-bg: #ffffff;
+    --header-border: #e2e8f0;
+
+    /* Content */
+    --content-bg: #f1f5f9;
+    --content-padding: 24px;
+
+    /* Colors */
+    --admin-primary: #3b82f6;
+    --admin-success: #10b981;
+    --admin-danger: #ef4444;
+    --admin-warning: #f59e0b;
+
+    /* Text */
+    --text-primary: #1e293b;
+    --text-secondary: #64748b;
+    --text-muted: #94a3b8;
+
+    /* Borders & Shadows */
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.05);
+    --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    --shadow-lg: 0 10px 40px rgba(0, 0, 0, 0.1);
+
+    /* Transitions */
+    --transition-fast: 0.15s ease;
+    --transition-normal: 0.2s ease;
+    --transition-slow: 0.3s ease-in-out;
+}

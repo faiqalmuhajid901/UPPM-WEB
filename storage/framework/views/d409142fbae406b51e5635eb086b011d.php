@@ -1,57 +1,56 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title><?php echo $__env->yieldContent('title', 'Admin Panel - UPPM'); ?></title>
-    
-    <!-- Asset Tailwind -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="<?php echo e(csrf_token()); ?>">
+    <title><?php echo $__env->yieldContent('title', 'Dashboard'); ?> | Admin UPPM</title>
+
+    <link rel="icon" href="<?php echo e(asset('favicon.ico')); ?>">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" />
+
     <?php echo app('Illuminate\Foundation\Vite')(['resources/css/app.css', 'resources/js/app.js']); ?>
-</head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased h-screen overflow-hidden flex">
     
-    <!-- 1. SIDEBAR -->
-    <?php echo $__env->make('admin.partials.sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+    <?php echo $__env->yieldPushContent('styles'); ?>
+</head>
 
-    <!-- BACKDROP (Overlay Hitam Mobile) -->
-    <!-- Muncul hanya di mobile ketika sidebar terbuka -->
-    <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
-
-    <!-- 2. Main Content Wrapper -->
-    <div class="flex-1 flex flex-col h-full overflow-hidden relative z-0">
+<body class="admin-body">
+    <div class="admin-layout">
         
-        <!-- Header -->
-        <?php echo $__env->make('admin.partials.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
+        <?php echo $__env->make('admin.partials.sidebar', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-        <!-- 3. Area Konten (Scrollable) -->
-        <main class="flex-1 overflow-y-auto p-6 md:p-8">
-            <?php echo $__env->yieldContent('admin_content'); ?>
-        </main>
+        
+        <div id="sidebar-overlay" class="sidebar-overlay"></div>
 
-    </div>
-
-    <!-- SCRIPT TOGGLE SIDEBAR -->
-    <script>
-        function toggleSidebar() {
-            const sidebar = document.getElementById('admin-sidebar');
-            const backdrop = document.getElementById('sidebarBackdrop');
-
-            // Logika Toggle:
-            // Jika sidebar tertutup (-translate-x-full), kita buka (hapus class tersebut).
-            // Jika sidebar terbuka, kita tutup (tambahkan class tersebut).
+        
+        <div class="admin-main" id="admin-main">
             
-            // Toggle transform class untuk animasi slide
-            sidebar.classList.toggle('-translate-x-full');
-            sidebar.classList.toggle('md:translate-x-0');
+            <?php echo $__env->make('admin.partials.header', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?>
 
-            // Handle backdrop (Hanya muncul di mobile jika sidebar terbuka)
-            if (sidebar.classList.contains('-translate-x-full')) {
-                // Sidebar tertutup -> Sembunyikan backdrop
-                backdrop.classList.add('hidden');
-            } else {
-                // Sidebar terbuka -> Tampilkan backdrop
-                backdrop.classList.remove('hidden');
-            }
-        }
-    </script>
+            
+            <main class="admin-content">
+                
+                <?php if(session('success')): ?>
+                    <div class="alert alert-success">
+                        <i class="fas fa-check-circle"></i>
+                        <span><?php echo e(session('success')); ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <?php if(session('error')): ?>
+                    <div class="alert alert-error">
+                        <i class="fas fa-exclamation-circle"></i>
+                        <span><?php echo e(session('error')); ?></span>
+                    </div>
+                <?php endif; ?>
+
+                <?php echo $__env->yieldContent('content'); ?>
+            </main>
+        </div>
+    </div>
+    
+    <?php echo $__env->yieldPushContent('scripts'); ?>
 </body>
-</html><?php /**PATH E:\laragon\uppm-web\resources\views/layouts/admin.blade.php ENDPATH**/ ?>
+</html>
+<?php /**PATH E:\laragon\uppm-web\resources\views/layouts/admin.blade.php ENDPATH**/ ?>

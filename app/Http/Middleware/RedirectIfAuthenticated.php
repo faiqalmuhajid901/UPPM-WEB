@@ -19,7 +19,7 @@ class RedirectIfAuthenticated
         foreach ($guards as $guard) {
             if (Auth::guard($guard)->check()) {
                 // PERBAIKAN: Redirect langsung ke '/dashboard' tanpa ServiceProvider
-                return redirect('/dashboard'); 
+                return redirect()->route('admin.dashboard'); 
             }
         }
 

@@ -1,50 +1,74 @@
+<?php $__env->startSection('title', 'Kelola Konten'); ?>
 
-<?php $__env->startSection('title', 'Pilih Kategori'); ?>
-<?php $__env->startSection('page_title', 'Kelola Konten Website'); ?>
-
-<?php $__env->startSection('admin_content'); ?>
-<div class="max-w-7xl mx-auto">
+<?php $__env->startPush('styles'); ?>
     
-    <!-- MAPPING ROUTE: Agar tombol kartu mengarah ke route yang benar -->
-    <?php
-        $routeMap = [
-            'profil' => 'admin.konten.manage.profile',
-            'penelitian' => 'admin.konten.manage.penelitian',
-            'pengabdian' => 'admin.konten.manage.pengabdian',
-            'publikasi' => 'admin.konten.manage.publikasi',
-            'kkn' => 'admin.konten.manage.kkn',
-        ];
-    ?>
+<?php $__env->stopPush(); ?>
 
-    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        
-        <?php $__currentLoopData = $categories; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $label): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
-            
-            
-            <?php if(in_array($key, ['profil', 'penelitian', 'pengabdian', 'publikasi', 'kkn'])): ?>
-            
-                <div class="bg-white rounded-xl shadow-sm border border-slate-200 p-6 flex flex-col items-center justify-center text-center hover:shadow-xl hover:border-indigo-400 transition-all group">
-                    
-                    <div class="w-16 h-16 <?php echo e(in_array($key, ['profil']) ? 'bg-blue-50 text-blue-600' : ($key == 'penelitian' ? 'bg-teal-50 text-teal-600' : ($key == 'pengabdian' ? 'bg-orange-50 text-orange-600' : ($key == 'publikasi' ? 'bg-purple-50 text-purple-600' : 'bg-pink-50 text-pink-600')))); ?> rounded-full flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
-                        
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                    </div>
-                    
-                    <h3 class="text-xl font-bold text-slate-800 mb-2"><?php echo e($label); ?></h3>
-                    <p class="text-sm text-slate-500 mb-6">Kelola data di bagian <?php echo e($label); ?></p>
-                    
-                    
-                    <a href="<?php echo e(route($routeMap[$key])); ?>" class="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2 rounded-lg text-sm font-medium w-full">
-                        Masuk Folder
-                    </a>
+<?php $__env->startSection('content'); ?>
+<div class="container mx-auto px-4 py-6">
+    <!-- Page Header -->
+    <div class="page-header">
+        <div>
+            <h1 class="page-title">Kelola Konten</h1>
+            <p class="page-subtitle">Pilih section untuk mengelola konten</p>
+        </div>
+    </div>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stat-item">
+            <div class="stat-value"><?php echo e(collect($sections)->sum('count')); ?></div>
+            <div class="stat-label">Total Konten</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value"><?php echo e(count($sections)); ?></div>
+            <div class="stat-label">Section</div>
+        </div>
+        <div class="stat-item">
+            <div class="stat-value"><?php echo e(collect($sections)->sum(fn($s) => count($s['categories'] ?? []))); ?></div>
+            <div class="stat-label">Kategori</div>
+        </div>
+    </div>
+
+    <!-- Section Cards -->
+    <div class="section-cards">
+        <?php $__currentLoopData = $sections; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $key => $section): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+        <a href="<?php echo e(route('admin.content.section', $section['slug'] ?? $key)); ?>" class="section-card <?php echo e($section['color'] ?? 'blue'); ?>">
+            <div class="card-header">
+                <div class="card-icon <?php echo e($section['color'] ?? 'blue'); ?>">
+                    <i class="fas <?php echo e($section['icon'] ?? 'fa-file'); ?>"></i>
                 </div>
+                <div class="card-count"><?php echo e($section['count'] ?? 0); ?></div>
+            </div>
             
-            <?php endif; ?>
+            <h3 class="card-title"><?php echo e($section['name'] ?? $key); ?></h3>
+            <p class="card-description"><?php echo e($section['description'] ?? ''); ?></p>
+            
+            <div class="card-tags">
+                <?php $__currentLoopData = ($section['categories'] ?? []); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $catKey => $catConfig): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <?php
+                        // Handle both array and string format
+                        $catName = is_array($catConfig) ? ($catConfig['name'] ?? $catKey) : $catConfig;
+                    ?>
+                    <span class="card-tag"><?php echo e($catName); ?></span>
+                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
 
+                <?php
+                    $sectionSlug = $section['slug'] ?? $key;
+                ?>
+
+                <?php if($sectionSlug === 'dokumen'): ?>
+                    
+                    <span class="card-tag">SK &amp; Peraturan</span>
+                    <span class="card-tag">Panduan</span>
+                    <span class="card-tag">Template</span>
+                    <span class="card-tag">Laporan</span>
+                <?php endif; ?>
+            </div>
+        </a>
         <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
-
     </div>
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH E:\laragon\uppm-web\resources\views/admin/konten/index.blade.php ENDPATH**/ ?>

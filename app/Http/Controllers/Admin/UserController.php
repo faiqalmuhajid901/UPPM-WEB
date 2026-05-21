@@ -5,91 +5,94 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules;
 
 class UserController extends Controller
 {
     /**
-     * Fungsi Helper untuk memeriksa apakah user login adalah Super Admin
-     * Ini membuat kode lebih rapi dan tidak diulang-ulang.
+     * Display a listing of the resource.
      */
-    private function checkSuperAdmin()
-    {
-        if (Auth::user()->role !== 'super_admin') {
-            abort(403, 'Hanya Super Admin yang memiliki izin akses fitur ini.');
-        }
-    }
-
     public function index()
     {
-        $this->checkSuperAdmin();
-        
-        $users = User::latest()->paginate(10); 
-
+        $users = User::latest()->paginate(10);
         return view('admin.users.index', compact('users'));
     }
 
+    /**
+     * Show the form for creating a new resource.
+     */
     public function create()
     {
-        $this->checkSuperAdmin();
-
         return view('admin.users.create');
     }
 
+    /**
+     * Store a newly created resource in storage.
+     */
     public function store(Request $request)
     {
-        $this->checkSuperAdmin();
-
-        $request->validate([
+        $validated = $request->validate([
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
-            'password' => 'required|string|min:8|confirmed',
-            'role' => 'required|in:admin,super_admin', // Hanya boleh admin atau super admin
+            'password' => ['required', 'confirmed', Rules\Password::defaults()],
+            'role' => 'required|in:admin',
         ]);
 
-        User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'password' => bcrypt($request->password),
-            'role' => $request->role,
-        ]);
+        $validated['password'] = Hash::make($validated['password']);
 
-        return redirect()->route('admin.users.index')->with('success', 'User baru berhasil ditambahkan.');
+        User::create($validated);
+
+        return redirect()->route('admin.users.index')
+            ->with('success', 'User berhasil ditambahkan.');
     }
 
-    public function updateRole(Request $request, $id)
+    /**
+     * Show the form for editing the specified resource.
+     */
+    public function edit(User $user)
     {
-        $this->checkSuperAdmin();
+        return view('admin.users.edit', compact('user'));
+    }
 
-        $user = User::findOrFail($id);
+    /**
+     * Update the specified resource in storage.
+     */
+    public function update(Request $request, User $user)
+    {
+        $validated = $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
+            'password' => ['nullable', 'confirmed', Rules\Password::defaults()],
+            'role' => 'required|in:admin',
+        ]);
 
-        // Mencegah user mengubah role miliknya sendiri
-        if ($user->id === Auth::id()) {
-            return back()->with('error', 'Anda tidak bisa mengubah role sendiri!');
+        if (!empty($validated['password'])) {
+            $validated['password'] = Hash::make($validated['password']);
+        } else {
+            unset($validated['password']);
         }
 
-        $request->validate([
-            'role' => 'required|in:admin,super_admin',
-        ]);
+        $user->update($validated);
 
-        $user->role = $request->role;
-        $user->save();
-
-        return back()->with('success', "Role user {$user->name} berhasil diubah.");
+        return redirect()->route('admin.users.index')
+            ->with('success', 'User berhasil diperbarui.');
     }
 
-    public function destroy($id)
+    /**
+     * Remove the specified resource from storage.
+     */
+    public function destroy(User $user)
     {
-        $this->checkSuperAdmin();
-
-        $user = User::findOrFail($id);
-
-        if ($user->id === Auth::id()) {
-            return back()->with('error', 'Anda tidak bisa menghapus akun sendiri!');
+        // Jangan hapus diri sendiri
+        if ($user->id === auth()->id()) {
+            return redirect()->route('admin.users.index')
+                ->with('error', 'Tidak dapat menghapus akun sendiri.');
         }
 
         $user->delete();
 
-        return back()->with('success', 'User berhasil dihapus.');
+        return redirect()->route('admin.users.index')
+            ->with('success', 'User berhasil dihapus.');
     }
 }

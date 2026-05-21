@@ -1,0 +1,30 @@
+/* ========================================
+   RESPONSIVE UTILITIES
+   ======================================== */
+@layer utilities {
+    .container-fluid {
+        @apply w-full px-4 mx-auto;
+    }
+
+    @screen sm {
+        .container-fluid {
+            @apply px-6;
+        }
+    }
+
+    @screen lg {
+        .container-fluid {
+            @apply px-8;
+        }
+    }
+
+    /* Hide on mobile */
+    .hide-mobile {
+        @apply hidden sm:block;
+    }
+
+    /* Show only on mobile */
+    .show-mobile {
+        @apply block sm:hidden;
+    }
+}

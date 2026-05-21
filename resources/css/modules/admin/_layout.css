@@ -1,0 +1,30 @@
+/* ========================================
+   ADMIN LAYOUT
+   ======================================== */
+.admin-body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--content-bg);
+    min-height: 100vh;
+    overflow-x: hidden;
+}
+
+.admin-layout {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* Main Content Area */
+.admin-main {
+    flex: 1;
+    margin-left: var(--sidebar-width);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    transition: margin-left var(--transition-slow);
+}
+
+/* Admin Content */
+.admin-content {
+    flex: 1;
+    padding: var(--content-padding);
+}

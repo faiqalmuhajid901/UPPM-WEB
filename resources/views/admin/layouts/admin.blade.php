@@ -1,136 +1,100 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id" class="scroll-smooth">
 <head>
     <meta charset="UTF-8">
-    <title>@yield('title', 'Admin Panel - UPPM')</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
     
-    <!-- Asset Tailwind -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    {{-- Meta Tags untuk SEO --}}
+    <meta name="description" content="@yield('meta_description', 'Unit Penelitian dan Pengabdian Masyarakat - Politeknik ATK Yogyakarta')">
+    <meta name="keywords" content="UPPM, Penelitian, Pengabdian Masyarakat, Politeknik ATK, Yogyakarta">
+    <meta name="author" content="UPPM Politeknik ATK">
+    
+    {{-- Open Graph untuk Social Media --}}
+    <meta property="og:title" content="@yield('title', 'UPPM Politeknik ATK Yogyakarta')">
+    <meta property="og:description" content="@yield('meta_description', 'Unit Penelitian dan Pengabdian Masyarakat')">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="{{ url()->current() }}">
+    <meta property="og:image" content="{{ asset('images/UNIV_ATK.webp') }}">
+    
+    {{-- Title --}}
+    <title>@yield('title', 'UPPM Politeknik ATK Yogyakarta')</title>
+    
+    {{-- Favicon --}}
+    <link rel="icon" type="image/png" href="{{ asset('images/navbar_ ATK.png') }}">
+    <link rel="apple-touch-icon" href="{{ asset('images/navbar_ ATK.png') }}">
+    
+    {{-- ========================================== --}}
+    {{-- CSS ASSETS --}}
+    {{-- ========================================== --}}
+    
+    {{-- Tailwind CSS via Vite --}}
+    @vite(['resources/css/app.css'])
+    
+    {{-- Swiper CSS --}}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css">
+    
+    {{-- Custom Global CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    
+    {{-- Custom Page CSS --}}
+    <link rel="stylesheet" href="{{ asset('css/profil.css') }}">
+    
+    {{-- Additional Page-Specific Styles --}}
+    @stack('styles')
 </head>
-<body class="bg-slate-50 text-slate-900 font-sans antialiased h-screen overflow-hidden flex">
-    
-    <!-- 1. SIDEBAR (Tetap ada di sini) -->
-    <aside id="admin-sidebar" class="fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 text-slate-300 flex flex-col transition-transform duration-300 ease-in-out transform -translate-x-full md:translate-x-0 md:static md:block">
-        
-        <!-- Brand -->
-        <div class="h-16 flex items-center px-6 border-b border-slate-800">
-            <span class="text-xl font-bold text-white tracking-wide">UPPM ADMIN</span>
+
+<body class="bg-gray-50 flex flex-col min-h-screen font-sans antialiased">
+
+    {{-- PAGE LOADER --}}
+    <div id="page-loader" class="page-loader">
+        <div class="flex flex-col items-center">
+            <svg class="animate-spin h-12 w-12 text-teal-600 mb-4" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+            </svg>
+            <p class="text-gray-600 font-medium">Memuat Halaman...</p>
         </div>
-
-        <!-- User Info Mini -->
-        <div class="p-4 border-b border-slate-800">
-            <p class="text-xs uppercase text-slate-500 font-semibold">Logged in as</p>
-            <p class="text-sm font-bold text-white mt-1">
-                {{ auth()->user()->role === 'super_admin' ? 'Super Admin' : 'Admin Pegawai' }}
-            </p>
-        </div>
-
-        <!-- Navigation -->
-        <nav class="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
-            
-            {{-- LINK HOME --}}
-            <a href="{{ route('home') }}" target="_blank" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg group hover:bg-slate-800 hover:text-white transition-colors">
-                <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-teal-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
-                Lihat Website
-            </a>
-
-            {{-- DASHBOARD --}}
-            <a href="{{ route('admin.dashboard') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg group hover:bg-slate-800 hover:text-white transition-colors {{ request()->routeIs('admin.dashboard') ? 'bg-slate-800 text-white border-l-4 border-indigo-500' : '' }}">
-                <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z"></path></svg>
-                Dashboard
-            </a>
-
-            {{-- KELOLA KONTEN --}}
-            <a href="{{ route('admin.konten.index') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg group hover:bg-slate-800 hover:text-white transition-colors {{ request()->routeIs('admin.konten*') ? 'bg-slate-800 text-white border-l-4 border-indigo-500' : '' }}">
-                <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path></svg>
-                Kelola Konten
-            </a>
-
-            {{-- SUPER ADMIN MENU --}}
-            @if(auth()->user()->role === 'super_admin')
-                <div class="pt-4 pb-2">
-                    <p class="px-3 text-xs font-semibold text-slate-500 uppercase tracking-wider">Super Admin</p>
-                </div>
-                <a href="{{ route('admin.users.index') }}" class="flex items-center px-3 py-2.5 text-sm font-medium rounded-lg group hover:bg-slate-800 hover:text-white transition-colors {{ request()->routeIs('admin.users*') ? 'bg-slate-800 text-white border-l-4 border-indigo-500' : '' }}">
-                    <svg class="w-5 h-5 mr-3 text-slate-400 group-hover:text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z"></path></svg>
-                    Kelola User
-                </a>
-            @endif
-
-        </nav>
-
-        <!-- Logout -->
-        <div class="p-4 border-t border-slate-800">
-            <form method="POST" action="{{ route('logout') }}">
-                @csrf
-                <button type="submit" class="flex items-center w-full px-3 py-2 text-sm font-medium text-red-400 rounded-lg hover:bg-red-900/20 hover:text-red-300 transition-colors">
-                    <svg class="w-5 h-5 mr-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1"></path></svg>
-                    Logout
-                </button>
-            </form>
-        </div>
-    </aside>
-
-    <!-- BACKDROP (Overlay Gelap untuk Mobile) -->
-    <div id="sidebarBackdrop" onclick="toggleSidebar()" class="fixed inset-0 bg-black/50 z-40 hidden md:hidden transition-opacity"></div>
-
-    <!-- MAIN CONTENT WRAPPER -->
-    <!-- Kelas 'md:ml-64' memberi margin kiri pada desktop agar konten tidak tertutup sidebar -->
-    <div class="flex-1 flex flex-col h-full overflow-hidden relative z-0">
-        
-        <!-- Header -->
-        @include('admin.partials.header')
-
-        <!-- Area Konten -->
-        <main class="flex-1 overflow-y-auto p-6 md:p-8">
-            @yield('admin_content')
-        </main>
-
     </div>
 
-    <!-- SCRIPT TOGGLE SIDEBAR (USER FRIENDLY DELAY) -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const sidebar = document.getElementById('admin-sidebar');
-            const backdrop = document.getElementById('sidebarBackdrop');
-            
-            // Cek elemen ada
-            if (!sidebar) return;
+    {{-- HEADER NAVIGATION --}}
+    @include('partials.header')
 
-            let timer;
+    {{-- MAIN CONTENT AREA --}}
+    <main id="main-content" class="flex-grow">
+        
+        {{-- Alert Messages --}}
+        @include('partials.alerts')
 
-            // Logika Mouse Hover (Jeda 300ms sebelum tutup)
-            sidebar.addEventListener('mouseenter', () => {
-                clearTimeout(timer); // Batalkan timer jika ada
-                // Tampilkan sidebar
-                sidebar.classList.remove('-translate-x-full');
-                sidebar.classList.add('md:translate-x-0');
-                backdrop.classList.remove('hidden');
-            });
+        {{-- Page Content --}}
+        @yield('content')
+    </main>
 
-            sidebar.addEventListener('mouseleave', () => {
-                // Tunggu 300ms sebelum menutup agar tidak susah diklik
-                timer = setTimeout(() => {
-                    sidebar.classList.add('-translate-x-full');
-                    sidebar.classList.add('md:translate-x-0');
-                    backdrop.classList.add('hidden');
-                }, 300); 
-            });
+    {{-- FOOTER --}}
+    @include('partials.footer')
 
-            // Fungsi Manual Toggle (Untuk tombol Hamburger di Header)
-            window.toggleSidebar = function() {
-                // Toggle transform classes
-                sidebar.classList.toggle('-translate-x-full');
-                sidebar.classList.toggle('md:translate-x-0');
+    {{-- BACK TO TOP BUTTON --}}
+    <button id="back-to-top" 
+            class="hidden fixed bottom-8 right-8 bg-teal-600 hover:bg-teal-700 text-white p-4 rounded-full shadow-lg hover:shadow-xl transition-all duration-300 hover:scale-110 z-50 group"
+            aria-label="Kembali ke atas"
+            title="Kembali ke atas">
+        <svg class="w-6 h-6 transform group-hover:-translate-y-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"/>
+        </svg>
+    </button>
 
-                // Handle backdrop
-                if (sidebar.classList.contains('-translate-x-full')) {
-                    backdrop.classList.add('hidden');
-                } else {
-                    backdrop.classList.remove('hidden');
-                }
-            }
-        });
-    </script>
+    {{-- ========================================== --}}
+    {{-- JAVASCRIPT ASSETS --}}
+    {{-- ========================================== --}}
+    
+    {{-- Swiper JS (Load pertama) --}}
+    <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+    
+    {{-- Custom Global JS --}}
+    <script src="{{ asset('js/app.js') }}"></script>
+    
+    {{-- Additional Page-Specific Scripts --}}
+    @stack('scripts')
+
 </body>
 </html>

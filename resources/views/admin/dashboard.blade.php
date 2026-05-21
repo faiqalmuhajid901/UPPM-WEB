@@ -3,9 +3,9 @@
 @section('title', 'Dashboard Admin')
 @section('page_title', 'Dashboard Admin')
 
-@section('admin_content')
+@section('content') {{-- Ganti admin_content dengan content --}}
 <div class="max-w-7xl mx-auto">
-    
+
     <!-- Banner Sambutan -->
     <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 text-white mb-8 shadow-lg">
         <h1 class="text-2xl font-bold">Halo, {{ auth()->user()->name }}!</h1>

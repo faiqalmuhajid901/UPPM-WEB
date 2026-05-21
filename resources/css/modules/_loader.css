@@ -1,0 +1,21 @@
+/* ========================================
+   LOADER / SPINNER
+   ======================================== */
+@layer components {
+    .loader {
+        @apply inline-block w-6 h-6 border-2 border-gray-300 border-t-blue-600 
+               rounded-full animate-spin;
+    }
+
+    .loader-lg {
+        @apply w-10 h-10 border-4;
+    }
+
+    .loader-overlay {
+        @apply fixed inset-0 bg-white/80 flex items-center justify-center z-50;
+    }
+
+    .skeleton {
+        @apply bg-gray-200 rounded animate-pulse;
+    }
+}

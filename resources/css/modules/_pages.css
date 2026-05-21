@@ -1,0 +1,1074 @@
+/**
+ * FILE: resources/css/modules/_pages.css
+ * Styling untuk halaman frontend baru:
+ * - Program, Proposal, Pelatihan, Pelayanan, Kemitraan
+ * Color scheme: Politeknik ATK (Hijau #006837, Emas #c4a35a)
+ */
+
+/* ============================================================
+   PAGE HERO
+   ============================================================ */
+.page-hero {
+    position: relative;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary, #006837) 0%, var(--color-primary-dark, #004d29) 100%);
+    overflow: hidden;
+}
+
+.page-hero__overlay {
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.page-hero__content {
+    position: relative;
+    z-index: 10;
+    text-align: center;
+    padding: 2rem 1rem;
+    max-width: 800px;
+}
+
+.page-hero__title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin-bottom: 0.75rem;
+    line-height: 1.2;
+}
+
+.page-hero__subtitle {
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+@media (min-width: 768px) {
+    .page-hero__title { font-size: 2.5rem; }
+    .page-hero__subtitle { font-size: 1.125rem; }
+}
+
+/* ============================================================
+   BREADCRUMB
+   ============================================================ */
+.page-breadcrumb {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1rem;
+    font-size: 0.875rem;
+}
+
+.page-breadcrumb a {
+    color: rgba(255, 255, 255, 0.7);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.page-breadcrumb a:hover {
+    color: var(--color-accent, #c4a35a);
+}
+
+.page-breadcrumb span {
+    color: rgba(255, 255, 255, 0.5);
+}
+
+.page-breadcrumb span:last-child {
+    color: #ffffff;
+    font-weight: 500;
+}
+
+/* ============================================================
+   SECTION CONTENT
+   ============================================================ */
+.section-content {
+    padding: 3rem 0;
+    background-color: #f9fafb;
+}
+
+@media (min-width: 768px) {
+    .section-content { padding: 4rem 0; }
+}
+
+.section-content .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+@media (min-width: 640px) {
+    .section-content .container { padding: 0 1.5rem; }
+}
+
+/* ============================================================
+   CONTENT INTRO
+   ============================================================ */
+.content-intro {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+@media (min-width: 768px) {
+    .content-intro {
+        flex-direction: row;
+        text-align: left;
+        padding: 2.5rem;
+    }
+}
+
+.content-intro__icon {
+    flex-shrink: 0;
+    width: 4rem;
+    height: 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary, #006837) 0%, var(--color-primary-dark, #004d29) 100%);
+    border-radius: 1rem;
+}
+
+.content-intro__icon svg {
+    width: 2rem;
+    height: 2rem;
+    color: #ffffff;
+}
+
+.content-intro__text h2 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.75rem;
+}
+
+.content-intro__text p {
+    color: #4b5563;
+    line-height: 1.7;
+    margin: 0;
+}
+
+/* ============================================================
+   SECTION TITLE
+   ============================================================ */
+.section-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.section-subtitle {
+    text-align: center;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: var(--color-primary, #006837);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    border: none;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: var(--color-primary-dark, #004d29);
+    transform: translateY(-1px);
+}
+
+.btn-primary svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+.btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.9375rem;
+    font-weight: 600;
+    color: var(--color-primary, #006837);
+    background-color: #ffffff;
+    border: 2px solid var(--color-primary, #006837);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.btn-secondary:hover {
+    background-color: var(--color-primary, #006837);
+    color: #ffffff;
+}
+
+.btn-secondary svg {
+    width: 1.125rem;
+    height: 1.125rem;
+}
+
+/* ============================================================
+   PROGRAM GRID & CARDS
+   ============================================================ */
+.program-grid,
+.pelatihan-grid,
+.layanan-grid,
+.kerjasama-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    margin-bottom: 2rem;
+}
+
+@media (min-width: 640px) {
+    .program-grid,
+    .pelatihan-grid,
+    .layanan-grid,
+    .kerjasama-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .program-grid,
+    .pelatihan-grid,
+    .layanan-grid,
+    .kerjasama-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+}
+
+.program-card,
+.pelatihan-card,
+.layanan-card,
+.kerjasama-card {
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.program-card:hover,
+.pelatihan-card:hover,
+.layanan-card:hover,
+.kerjasama-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.program-card__image,
+.pelatihan-card__image,
+.layanan-card__image {
+    position: relative;
+    height: 180px;
+    overflow: hidden;
+}
+
+.program-card__image img,
+.pelatihan-card__image img,
+.layanan-card__image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.program-card:hover .program-card__image img,
+.pelatihan-card:hover .pelatihan-card__image img,
+.layanan-card:hover .layanan-card__image img {
+    transform: scale(1.05);
+}
+
+.program-card__icon,
+.pelatihan-card__icon,
+.layanan-card__icon,
+.kerjasama-card__icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 120px;
+    background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+}
+
+.program-card__icon svg,
+.pelatihan-card__icon svg,
+.layanan-card__icon svg,
+.kerjasama-card__icon svg {
+    width: 3rem;
+    height: 3rem;
+    color: var(--color-primary, #006837);
+}
+
+.program-card__content,
+.pelatihan-card__content,
+.layanan-card__content,
+.kerjasama-card__content {
+    padding: 1.5rem;
+}
+
+.program-card__title,
+.pelatihan-card__title,
+.layanan-card__title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.kerjasama-card h4 {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.program-card__desc,
+.pelatihan-card__desc,
+.layanan-card__desc,
+.kerjasama-card p {
+    font-size: 0.875rem;
+    color: #4b5563;
+    line-height: 1.6;
+    margin: 0;
+}
+
+.program-card__link,
+.pelatihan-card__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    margin-top: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--color-primary, #006837);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.program-card__link:hover,
+.pelatihan-card__link:hover {
+    color: var(--color-primary-dark, #004d29);
+}
+
+.program-card__link svg,
+.pelatihan-card__link svg {
+    width: 1rem;
+    height: 1rem;
+}
+
+/* ============================================================
+   PROPOSAL PLACEHOLDER
+   ============================================================ */
+.proposal-placeholder {
+    max-width: 600px;
+    margin: 0 auto 3rem;
+    padding: 3rem 2rem;
+    text-align: center;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.proposal-placeholder__icon {
+    width: 5rem;
+    height: 5rem;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--color-primary, #006837) 0%, var(--color-primary-dark, #004d29) 100%);
+    border-radius: 50%;
+}
+
+.proposal-placeholder__icon svg {
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #ffffff;
+}
+
+.proposal-placeholder__title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    margin-bottom: 0.75rem;
+}
+
+.proposal-placeholder__desc {
+    color: #4b5563;
+    line-height: 1.7;
+    margin-bottom: 2rem;
+}
+
+.proposal-placeholder__info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.info-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    text-align: left;
+}
+
+.info-item__icon {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+    border-radius: 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.info-item__icon svg {
+    width: 1.25rem;
+    height: 1.25rem;
+    color: var(--color-primary, #006837);
+}
+
+.info-item__text strong {
+    display: block;
+    font-size: 0.9375rem;
+    color: #111827;
+    margin-bottom: 0.125rem;
+}
+
+.info-item__text span {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.proposal-placeholder__actions {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1rem;
+    position: relative;
+    z-index: 100;
+}
+
+.proposal-placeholder__actions a {
+    position: relative;
+    z-index: 101;
+    pointer-events: auto !important;
+    cursor: pointer !important;
+}
+
+/* Ensure Google Form link is clickable */
+.proposal-placeholder__actions a[href*="forms.gle"] {
+    pointer-events: auto !important;
+    cursor: pointer !important;
+    position: relative;
+    z-index: 102;
+}
+
+
+/* ============================================================
+   GUIDE STEPS / PROSEDUR
+   ============================================================ */
+.proposal-guide,
+.prosedur-section {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.proposal-guide h3,
+.prosedur-section h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #111827;
+    text-align: center;
+    margin-bottom: 1.5rem;
+}
+
+.guide-steps,
+.prosedur-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.guide-step,
+.prosedur-step {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f9fafb;
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.guide-step:hover,
+.prosedur-step:hover {
+    transform: translateX(8px);
+    background-color: #f3f4f6;
+}
+
+.guide-step__number,
+.prosedur-step__number {
+    flex-shrink: 0;
+    width: 2.5rem;
+    height: 2.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    font-weight: 700;
+    color: #ffffff;
+    background: linear-gradient(135deg, var(--color-primary, #006837) 0%, var(--color-primary-dark, #004d29) 100%);
+    border-radius: 50%;
+}
+
+.guide-step__content h4,
+.prosedur-step__content h4 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.25rem;
+}
+
+.guide-step__content p,
+.prosedur-step__content p {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ============================================================
+   JADWAL TABLE
+   ============================================================ */
+.jadwal-table-wrapper {
+    overflow-x: auto;
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+}
+
+.jadwal-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.jadwal-table thead {
+    background: linear-gradient(135deg, var(--color-primary, #006837) 0%, var(--color-primary-dark, #004d29) 100%);
+}
+
+.jadwal-table th {
+    padding: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    text-align: left;
+    white-space: nowrap;
+}
+
+.jadwal-table td {
+    padding: 1rem;
+    font-size: 0.9375rem;
+    color: #374151;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.jadwal-table tbody tr:hover {
+    background-color: #f9fafb;
+}
+
+.jadwal-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+/* ============================================================
+   PARTNERS / KEMITRAAN
+   ============================================================ */
+.partners-section {
+    margin-bottom: 3rem;
+}
+
+.partners-grid {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(2, 1fr);
+    margin-top: 2rem;
+}
+
+@media (min-width: 640px) {
+    .partners-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .partners-grid {
+        grid-template-columns: repeat(6, 1fr);
+    }
+}
+
+.partner-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1.5rem 1rem;
+    background-color: #ffffff;
+    border-radius: 0.75rem;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
+    transition: all 0.3s ease;
+}
+
+.partner-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+}
+
+.partner-logo {
+    width: 80px;
+    height: 80px;
+    object-fit: contain;
+    margin-bottom: 0.75rem;
+}
+
+.partner-placeholder {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #f3f4f6;
+    border-radius: 0.5rem;
+    margin-bottom: 0.75rem;
+}
+
+.partner-placeholder svg {
+    width: 2rem;
+    height: 2rem;
+    color: #9ca3af;
+}
+
+.partner-name {
+    font-size: 0.8125rem;
+    font-weight: 500;
+    color: #374151;
+    text-align: center;
+}
+
+/* ============================================================
+   KERJASAMA SECTION
+   ============================================================ */
+.kerjasama-section {
+    margin-bottom: 2rem;
+}
+
+.kerjasama-section .section-title {
+    margin-bottom: 2rem;
+}
+
+/* ============================================================
+   FILTER TABS
+   ============================================================ */
+.filter-tabs-container {
+    display: flex;
+    justify-content: center;
+}
+
+.filter-tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1.25rem;
+    font-size: 0.9375rem;
+    font-weight: 500;
+    color: #4b5563;
+    background-color: #ffffff;
+    border: 2px solid #e5e7eb;
+    border-radius: 9999px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.filter-tab:hover {
+    border-color: var(--color-primary, #006837);
+    color: var(--color-primary, #006837);
+}
+
+.filter-tab.active {
+    background-color: var(--color-primary, #006837);
+    border-color: var(--color-primary, #006837);
+    color: #ffffff;
+}
+
+.filter-count {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 1.5rem;
+    height: 1.5rem;
+    padding: 0 0.5rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 9999px;
+}
+
+.filter-tab.active .filter-count {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================================
+   CARDS GRID CENTERED (Penelitian Page)
+   ============================================================ */
+.cards-grid-center {
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: 1fr;
+    justify-items: center;
+    margin-bottom: 3rem;
+}
+
+@media (min-width: 640px) {
+    .cards-grid-center {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (min-width: 1024px) {
+    .cards-grid-center {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+/* Research Card */
+.research-card {
+    background-color: #ffffff;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    overflow: hidden;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 400px;
+}
+
+.research-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+}
+
+.card-image-wrapper {
+    position: relative;
+    height: 200px;
+    overflow: hidden;
+}
+
+.card-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.research-card:hover .card-image {
+    transform: scale(1.05);
+}
+
+.card-image-placeholder {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.card-image-placeholder.panduan {
+    background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+    color: #2563eb;
+}
+
+.card-image-placeholder.jurnal {
+    background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+    color: #d97706;
+}
+
+.card-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.4) 0%, transparent 50%);
+}
+
+.card-badge {
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    padding: 0.375rem 0.75rem;
+    font-size: 0.75rem;
+    font-weight: 600;
+    border-radius: 9999px;
+}
+
+.card-badge.panduan {
+    color: #1e40af;
+    background-color: #dbeafe;
+}
+
+.card-badge.jurnal {
+    color: #92400e;
+    background-color: #fef3c7;
+}
+
+.card-actions {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    color: #ffffff;
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.action-btn:hover {
+    background-color: var(--color-primary, #006837);
+}
+
+.card-content {
+    padding: 1.5rem;
+}
+
+.card-title {
+    font-size: 1.125rem;
+    font-weight: 600;
+    color: #111827;
+    margin-bottom: 0.5rem;
+    line-height: 1.4;
+}
+
+.card-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    line-height: 1.6;
+    margin-bottom: 1rem;
+}
+
+.card-meta {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.meta-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.75rem;
+    color: #9ca3af;
+}
+
+.card-footer {
+    padding-top: 1rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.card-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.375rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.card-link.panduan {
+    color: #2563eb;
+}
+
+.card-link.jurnal {
+    color: #d97706;
+}
+
+.card-link:hover {
+    gap: 0.625rem;
+}
+
+/* ============================================================
+   PAGINATION
+   ============================================================ */
+.pagination-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 3rem;
+    padding-top: 2rem;
+    border-top: 1px solid #e5e7eb;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.pagination-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.625rem 1rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pagination-btn:hover:not(.disabled) {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.pagination-btn.disabled {
+    color: #9ca3af;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
+.pagination-numbers {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.pagination-number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: 2.5rem;
+    height: 2.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    background-color: #ffffff;
+    border: 1px solid #d1d5db;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.pagination-number:hover:not(.active) {
+    background-color: #f9fafb;
+    border-color: #9ca3af;
+}
+
+.pagination-number.active {
+    color: #ffffff;
+    background-color: var(--color-primary, #006837);
+    border-color: var(--color-primary, #006837);
+}
+
+.pagination-info {
+    font-size: 0.875rem;
+    color: #6b7280;
+    text-align: center;
+}
+
+/* ============================================================
+   EMPTY STATE
+   ============================================================ */
+.empty-state {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 4rem 2rem;
+}
+
+.empty-icon {
+    width: 5rem;
+    height: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #d1d5db;
+    margin-bottom: 1.5rem;
+}
+
+.empty-title {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #374151;
+    margin-bottom: 0.5rem;
+}
+
+.empty-description {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 1.5rem;
+    line-height: 1.6;
+}
+
+.empty-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #ffffff;
+    background-color: var(--color-primary, #006837);
+    border-radius: 0.5rem;
+    text-decoration: none;
+    transition: all 0.2s ease;
+}
+
+.empty-btn:hover {
+    background-color: var(--color-primary-dark, #004d29);
+}

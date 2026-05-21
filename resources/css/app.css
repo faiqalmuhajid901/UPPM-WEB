@@ -1,3 +1,59 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+/* ========================================
+   TAILWIND CSS
+======================================== */
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+
+/* ========================================
+   ADMIN MODULES
+======================================== */
+@import './modules/admin/_variables.css';
+@import './modules/admin/_layout.css';
+@import './modules/admin/_sidebar.css';
+@import './modules/admin/_header.css';
+@import './modules/admin/_content.css';
+@import './modules/admin/_alerts.css';
+@import './modules/admin/_responsive.css';
+@import './modules/admin/_forms.css';
+@import './modules/admin/_konten.css';
+@import './modules/admin/content-index.css';
+@import './modules/admin/content-section.css';
+@import './modules/section-modal.css';
+
+/* ========================================
+   FRONTEND MODULES
+======================================== */
+@import "./modules/_admin.css";
+@import "./modules/_header.css";
+@import "./modules/_footer.css";
+@import "./modules/_swiper.css";
+@import "./modules/_auth.css";
+@import "./modules/_animations.css";
+@import "./modules/_forms.css";
+@import "./modules/_buttons.css";
+@import "./modules/_cards.css";
+@import "./modules/_pages.css";
+
+/* ========================================
+   PAGE STYLES
+======================================== */
+@import "./penelitian.css";
+@import "./pengabdian.css";
+
+/* ========================================
+   UTILITY CLASSES
+======================================== */
+.stats-pattern {
+    background-image: url('data:image/svg+xml,%3Csvg width=60 height=60 xmlns=http://www.w3.org/2000/svg%3E%3Crect width=60 height=60 fill=%23ffffff opacity=0.1/%3E%3C/svg%3E');
+}
+
+[x-cloak] {
+    display: none !important;
+}
+
+.has-dynamic-bg {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

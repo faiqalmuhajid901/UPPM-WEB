@@ -1,0 +1,482 @@
+/* ========================================
+   PENGABDIAN MASYARAKAT STYLES
+   Color Theme: Navy Blue (#1e3a5f)
+======================================== */
+
+:root {
+    --primary-dark: #1e3a5f;
+    --primary: #2c5282;
+    --primary-light: #3182ce;
+    --accent: #38b2ac;
+    --accent-light: #4fd1c5;
+    --text-dark: #1a202c;
+    --text-gray: #718096;
+    --text-light: #a0aec0;
+    --bg-light: #f7fafc;
+    --bg-white: #ffffff;
+    --border-color: #e2e8f0;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.08);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.1);
+    --shadow-lg: 0 10px 25px rgba(0,0,0,0.12);
+    --shadow-xl: 0 20px 40px rgba(0,0,0,0.15);
+    --transition: all 0.3s ease;
+    --radius-sm: 0.5rem;
+    --radius-md: 1rem;
+    --radius-lg: 1.5rem;
+    --radius-full: 50px;
+}
+
+/* Base */
+.pengabdian-page *, .pelatihan-page *, .pelayanan-page * { box-sizing: border-box; }
+
+.container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 1.5rem; }
+@media (max-width: 768px) { .container { padding: 0 1rem; } }
+
+/* Hero Section */
+.pengabdian-hero {
+    position: relative;
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 50%, var(--primary-light) 100%);
+    overflow: hidden;
+    padding: 6rem 1rem 4rem;
+}
+
+.hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+}
+
+.hero-content { position: relative; z-index: 10; text-align: center; padding: 2rem 1rem; max-width: 800px; width: 100%; }
+
+.hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(10px);
+    padding: 0.5rem 1.25rem;
+    border-radius: var(--radius-full);
+    color: white;
+    font-size: 0.875rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.hero-title { font-size: clamp(2rem, 5vw, 3.5rem); font-weight: 800; color: white; margin: 0 0 1.5rem 0; line-height: 1.15; text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3); }
+.hero-subtitle { font-size: clamp(1rem, 2.5vw, 1.25rem); color: rgba(255, 255, 255, 0.9); margin: 0 auto 2.5rem; line-height: 1.7; max-width: 600px; }
+
+.hero-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+.btn-hero-primary, .btn-hero-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: var(--radius-full);
+    font-weight: 600;
+    font-size: 0.9375rem;
+    text-decoration: none;
+    transition: var(--transition);
+    min-width: 180px;
+}
+
+.btn-hero-primary { background: white; color: var(--primary-dark); box-shadow: var(--shadow-lg); }
+.btn-hero-primary:hover { transform: translateY(-3px); box-shadow: var(--shadow-xl); background: var(--accent); color: white; }
+.btn-hero-secondary { background: transparent; color: white; border: 2px solid rgba(255, 255, 255, 0.5); }
+.btn-hero-secondary:hover { background: rgba(255, 255, 255, 0.1); border-color: white; transform: translateY(-3px); }
+
+.hero-scroll-indicator { position: absolute; bottom: 2rem; left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 0.5rem; color: rgba(255, 255, 255, 0.7); font-size: 0.75rem; animation: bounce 2s infinite; }
+
+@keyframes bounce { 0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); } 40% { transform: translateX(-50%) translateY(-10px); } 60% { transform: translateX(-50%) translateY(-5px); } }
+
+/* Section Header */
+.section-header { text-align: center; margin-bottom: 3rem; padding: 0 1rem; }
+.text-center { text-align: center; }
+.section-badge { display: inline-block; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); color: white; padding: 0.375rem 1rem; border-radius: var(--radius-full); font-size: 0.75rem; font-weight: 600; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 1rem; }
+.section-title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; color: var(--text-dark); margin: 0 0 1rem 0; }
+.section-subtitle { font-size: 1rem; color: var(--text-gray); max-width: 600px; margin: 0 auto; line-height: 1.7; word-wrap: break-word; }
+
+/* Alur Section Centered */
+.alur-section .section-header, .alur-section .section-title, .alur-section .section-subtitle { text-align: center; }
+.alur-section .section-subtitle { margin-left: auto; margin-right: auto; }
+
+/* Stats Section */
+.stats-section { background: var(--bg-white); padding: 3rem 0 4rem; margin-top: -3rem; position: relative; z-index: 20; }
+.stats-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; max-width: 800px; margin: 0 auto; justify-content: center; }
+.stat-card { background: white; padding: 1.75rem 1.25rem; border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-lg); transition: var(--transition); border: 1px solid var(--border-color); }
+.stat-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-xl); }
+.stat-icon { width: 56px; height: 56px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1rem; color: white; font-size: 1.25rem; }
+.stat-number { font-size: clamp(1.75rem, 3vw, 2.25rem); font-weight: 800; color: var(--primary-dark); margin-bottom: 0.25rem; }
+.stat-label { color: var(--text-gray); font-size: 0.8125rem; font-weight: 500; }
+
+/* Skema Section */
+.skema-section { padding: 4rem 0; background: var(--bg-light); }
+.skema-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.skema-card { background: white; padding: 2rem 1.5rem; border-radius: var(--radius-md); text-align: center; box-shadow: var(--shadow-md); transition: var(--transition); border-bottom: 4px solid transparent; }
+.skema-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); border-bottom-color: var(--accent); }
+.skema-icon { width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 1.25rem; color: white; font-size: 1.75rem; transition: var(--transition); }
+.skema-card:hover .skema-icon { transform: scale(1.1); }
+.skema-title { font-size: 1.125rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.75rem 0; }
+.skema-desc { color: var(--text-gray); font-size: 0.875rem; line-height: 1.7; margin: 0 0 1.25rem 0; }
+.skema-link { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--primary); font-weight: 600; font-size: 0.875rem; text-decoration: none; transition: var(--transition); }
+.skema-link:hover { color: var(--accent); gap: 0.75rem; }
+
+/* Unified Card Sections on Main Pengabdian Page */
+.program-section, .pelatihan-section, .kegiatan-section { padding: 4rem 0; }
+.program-section { background: var(--bg-white); }
+.pelatihan-section { background: var(--bg-light); }
+.kegiatan-section { background: var(--bg-white); }
+.section-card-grid { align-items: stretch; }
+.section-card { display: flex; flex-direction: column; height: 100%; }
+.section-card .skema-link { justify-content: center; margin-top: auto; }
+.section-meta { margin: -0.25rem 0 0.75rem; color: var(--primary); font-size: 0.8125rem; font-weight: 600; }
+.section-more, .kegiatan-more { margin-top: 2rem; text-align: center; }
+.section-more-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: var(--radius-full);
+    border: 1px solid var(--primary);
+    color: var(--primary);
+    background: white;
+    font-weight: 600;
+    text-decoration: none;
+    transition: var(--transition);
+}
+.section-more-link:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+}
+
+/* Page Hero (Sub Pages) */
+.page-hero { position: relative; background: linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 100%); padding: 8rem 1rem 4rem; text-align: center; min-height: 300px; display: flex; align-items: center; justify-content: center; }
+.page-hero__overlay { position: absolute; inset: 0; background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E"); }
+.page-hero__content { position: relative; z-index: 10; max-width: 700px; }
+
+/* Text wrapper with semi-transparent background */
+.page-hero__text-wrapper { display: inline-block; background: rgba(30, 58, 95, 0.75); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); padding: 1.5rem 2.5rem; border-radius: var(--radius-lg); border: 1px solid rgba(255, 255, 255, 0.15); box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3); margin-top: 1rem; }
+.page-hero__text-wrapper .page-hero__title, .page-hero__text-wrapper .page-hero__subtitle { color: white; text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); }
+.page-hero__text-wrapper .page-hero__title { margin-bottom: 0.75rem; }
+.page-hero__text-wrapper .page-hero__subtitle { margin: 0; color: rgba(255, 255, 255, 0.95); }
+
+.page-breadcrumb { display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; font-size: 0.875rem; flex-wrap: wrap; }
+.page-breadcrumb a { color: rgba(255, 255, 255, 0.7); text-decoration: none; transition: var(--transition); }
+.page-breadcrumb a:hover { color: white; }
+.page-breadcrumb span { color: rgba(255, 255, 255, 0.5); }
+.page-breadcrumb span:last-child { color: white; font-weight: 500; }
+
+.page-hero__title { font-size: clamp(1.75rem, 4vw, 2.5rem); font-weight: 800; color: white; margin: 0 0 1rem 0; }
+.page-hero__subtitle { font-size: 1rem; color: rgba(255, 255, 255, 0.9); margin: 0; line-height: 1.7; }
+
+/* Section Content */
+.section-content { padding: 4rem 0; background: var(--bg-light); }
+.content-intro { display: flex; gap: 2rem; align-items: flex-start; background: white; padding: 2rem; border-radius: var(--radius-lg); box-shadow: var(--shadow-md); margin-bottom: 3rem; }
+.content-intro__icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.content-intro__icon i { font-size: 1.5rem; color: white; }
+.content-intro__text h2 { font-size: 1.375rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.75rem 0; }
+.content-intro__text p { color: var(--text-gray); font-size: 0.9375rem; line-height: 1.8; margin: 0; }
+
+/* Panduan Page */
+.panduan-page .panduan-section { margin-bottom: 3rem; }
+.panduan-page .panduan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.panduan-page .panduan-card { display: flex; flex-direction: column; gap: 1rem; background: white; padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-md); transition: var(--transition); border: 1px solid var(--border-color); align-items: center; text-align: center; }
+.panduan-page .panduan-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); border-color: var(--primary-light); }
+.panduan-card__icon { width: 60px; height: 60px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: var(--radius-md); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+.panduan-card__icon i { font-size: 1.5rem; color: white; }
+.panduan-card__content { flex: 1; min-width: 0; width: 100%; }
+.panduan-card__title { font-size: 1.0625rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.5rem 0; }
+.panduan-card__desc { color: var(--text-gray); font-size: 0.875rem; line-height: 1.6; margin: 0 0 0.75rem 0; }
+.panduan-card__link { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--primary); font-weight: 600; font-size: 0.8125rem; text-decoration: none; transition: var(--transition); padding: 0.5rem 1rem; border-radius: var(--radius-sm); width: 100%; }
+.panduan-card__link:hover { color: var(--accent); background: var(--bg-light); }
+
+/* Panduan Page - Section Titles Left Align */
+.panduan-page .section-header.section-header--left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 1rem;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.panduan-page .section-header.section-header--left .section-badge {
+    margin: 0;
+}
+
+.panduan-page .section-header.section-header--left .section-title {
+    margin: 0;
+}
+
+.panduan-page .section-header,
+.panduan-page .section-header.text-center,
+.panduan-page .section-title,
+.panduan-page .section-title.text-center,
+.panduan-page .section-subtitle,
+.panduan-page .alur-section .section-header,
+.panduan-page .alur-section .section-title,
+.panduan-page .alur-section .section-subtitle {
+    text-align: left;
+}
+
+.panduan-page .section-subtitle,
+.panduan-page .alur-section .section-subtitle {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.panduan-page .section-badge {
+    margin-left: 0;
+    margin-right: auto;
+}
+
+/* Alur Timeline */
+.alur-section { margin-bottom: 3rem; }
+.alur-timeline { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; position: relative; }
+.alur-timeline::before { content: ''; position: absolute; top: 24px; left: 12.5%; right: 12.5%; height: 2px; background: var(--border-color); z-index: 0; }
+.alur-step { position: relative; z-index: 1; text-align: center; background: white; padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+.alur-step__number { width: 48px; height: 48px; background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; font-size: 1.25rem; font-weight: 800; margin: 0 auto 1rem; position: relative; z-index: 2; }
+.alur-step__content h4 { font-size: 1rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.5rem 0; }
+.alur-step__content p { color: var(--text-gray); font-size: 0.875rem; line-height: 1.6; margin: 0; }
+
+/* Pelatihan Page */
+.pelatihan-page .pelatihan-section { margin-bottom: 3rem; }
+.pelatihan-page .pelatihan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.pelatihan-page .pelatihan-card { display: flex; flex-direction: column; background: white; border-radius: var(--radius-md); overflow: visible; box-shadow: var(--shadow-md); transition: var(--transition); border: 1px solid var(--border-color); height: 100%; }
+.pelatihan-page .pelatihan-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+.pelatihan-card__image { height: 180px; overflow: hidden; flex-shrink: 0; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.pelatihan-card__image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+.pelatihan-card:hover .pelatihan-card__image img { transform: scale(1.08); }
+/* When image exists, icon overlaps it with negative margin */
+.pelatihan-card__icon { width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: -35px auto 0; position: relative; z-index: 2; box-shadow: var(--shadow-md); flex-shrink: 0; }
+/* When no image is present, icon should not use negative margin */
+.pelatihan-card__icon:first-child { margin: 1.5rem auto 0; }
+.pelatihan-card__icon i { font-size: 1.75rem; color: white; }
+.pelatihan-card__content { padding: 1.25rem 1.5rem 1.5rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
+.pelatihan-card__title { font-size: 1.125rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.75rem 0; line-height: 1.4; }
+.pelatihan-card__desc { color: var(--text-gray); font-size: 0.9375rem; line-height: 1.7; margin: 0 0 1rem 0; flex: 1; }
+.pelatihan-card__link { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; color: var(--primary); font-weight: 600; font-size: 0.875rem; text-decoration: none; padding: 0.5rem; border-radius: var(--radius-sm); transition: var(--transition); margin-top: auto; }
+.pelatihan-card__link:hover { color: var(--accent); background: var(--bg-light); }
+
+/* Jadwal Table */
+.jadwal-table-wrapper { background: white; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.jadwal-table { width: 100%; min-width: 600px; border-collapse: collapse; }
+.jadwal-table th, .jadwal-table td { padding: 1rem 1.25rem; text-align: left; border-bottom: 1px solid var(--border-color); }
+.jadwal-table th { background: var(--bg-light); font-size: 0.75rem; font-weight: 600; color: var(--text-gray); text-transform: uppercase; letter-spacing: 0.05em; }
+.jadwal-table td { font-size: 0.875rem; color: var(--text-dark); }
+.jadwal-table tbody tr:last-child td { border-bottom: none; }
+.jadwal-table tbody tr:hover { background: var(--bg-light); }
+
+/* Pelayanan Page */
+.pelayanan-page .layanan-section { margin-bottom: 3rem; }
+.pelayanan-page .layanan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1.5rem; }
+.pelayanan-page .layanan-card { display: flex; flex-direction: column; background: white; border-radius: var(--radius-md); overflow: visible; box-shadow: var(--shadow-md); transition: var(--transition); border: 1px solid var(--border-color); height: 100%; }
+.pelayanan-page .layanan-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-xl); }
+.layanan-card__image { height: 180px; overflow: hidden; flex-shrink: 0; border-radius: var(--radius-md) var(--radius-md) 0 0; }
+.layanan-card__image img { width: 100%; height: 100%; object-fit: cover; transition: var(--transition); }
+.layanan-card:hover .layanan-card__image img { transform: scale(1.08); }
+.layanan-card__icon { width: 70px; height: 70px; background: linear-gradient(135deg, var(--accent) 0%, var(--accent-light) 100%); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: -35px auto 0; position: relative; z-index: 2; box-shadow: var(--shadow-md); flex-shrink: 0; }
+.layanan-card__icon:first-child { margin: 1.5rem auto 0; }
+.layanan-card__icon i { font-size: 1.75rem; color: white; }
+.layanan-card__content { padding: 1.25rem 1.5rem 1.5rem; text-align: center; flex: 1; display: flex; flex-direction: column; }
+.layanan-card__title { font-size: 1.125rem; font-weight: 700; color: var(--text-dark); margin: 0 0 0.75rem 0; line-height: 1.4; }
+.layanan-card__desc { color: var(--text-gray); font-size: 0.9375rem; line-height: 1.7; margin: 0 0 1rem 0; flex: 1; }
+
+/* Tarif Section */
+.tarif-section { margin-bottom: 3rem; }
+.tarif-table-wrapper { background: white; border-radius: var(--radius-md); overflow: hidden; box-shadow: var(--shadow-md); margin-bottom: 1rem; overflow-x: auto; }
+.tarif-note { display: flex; align-items: center; gap: 0.5rem; color: var(--text-gray); font-size: 0.875rem; padding: 1rem; background: var(--bg-light); border-radius: var(--radius-sm); margin: 0; }
+.tarif-note i { color: var(--primary); }
+
+/* Hero Overlay Dark (when background image from DB) */
+.hero-overlay--dark {
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Section Badge Small (used inside cards) */
+.section-badge--sm {
+    font-size: 0.625rem;
+    padding: 0.25rem 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+/* Pagination Wrapper */
+.pagination-wrapper {
+    margin-top: 2rem;
+    text-align: center;
+}
+
+/* Empty State */
+.empty-state {
+    background: var(--bg-white);
+    border: 2px dashed var(--border-color);
+    padding: 3rem 2rem;
+    border-radius: var(--radius-lg);
+    text-align: center;
+}
+
+.empty-state__title {
+    color: var(--text-dark);
+    font-size: 1.5rem;
+    font-weight: 700;
+    margin: 0 0 0.75rem 0;
+}
+
+.empty-state__text {
+    color: var(--text-gray);
+    font-size: 1rem;
+    margin: 0;
+}
+
+/* Responsive - Tablet */
+@media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+    .skema-grid { grid-template-columns: repeat(2, 1fr); gap: 1.25rem; }
+    .alur-timeline { grid-template-columns: repeat(2, 1fr); gap: 2rem 1.5rem; }
+    .alur-timeline::before { display: none; }
+    .alur-step { background: white; padding: 1.5rem; border-radius: var(--radius-md); box-shadow: var(--shadow-sm); }
+    .panduan-page .panduan-grid { grid-template-columns: repeat(2, 1fr); }
+    .pelatihan-page .pelatihan-grid { grid-template-columns: repeat(2, 1fr); }
+    .pelatihan-page .content-intro {
+        flex-direction: column;
+        align-items: stretch;
+        text-align: center;
+        gap: 1rem;
+    }
+    .pelatihan-page .content-intro__icon {
+        margin: 0 auto;
+    }
+    .pelatihan-page .content-intro__text {
+        width: 100%;
+        max-width: 100%;
+    }
+    .pelatihan-page .content-intro__text h2,
+    .pelatihan-page .content-intro__text p {
+        text-align: center;
+    }
+    .section-header { margin-bottom: 2rem; }
+}
+
+/* Responsive - Mobile */
+@media (max-width: 768px) {
+    .pengabdian-hero { min-height: auto; padding: 6rem 1rem 2.5rem; }
+    .hero-scroll-indicator { display: none; }
+    .stats-section { margin-top: -1.5rem; padding: 2rem 0; }
+    .stats-grid { grid-template-columns: repeat(2, 1fr); gap: 0.75rem; }
+    .stat-card { padding: 1.25rem 0.75rem; }
+    .skema-section, .program-section, .pelatihan-section, .kegiatan-section, .section-content { padding: 2.5rem 0; }
+    .skema-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .skema-card { padding: 1.5rem 1rem; }
+    .hero-buttons { flex-direction: column; align-items: center; gap: 0.75rem; }
+    .btn-hero-primary, .btn-hero-secondary { width: 100%; max-width: 280px; padding: 0.75rem 1.25rem; font-size: 0.875rem; }
+    .page-hero { padding: 6rem 1rem 2.5rem; min-height: auto; }
+    .page-hero__text-wrapper { padding: 1rem 1.5rem; margin-top: 0.75rem; }
+    .page-hero__title { font-size: 1.5rem; }
+    .page-hero__text-wrapper .page-hero__title { font-size: 1.375rem; }
+    .page-hero__subtitle { font-size: 0.875rem; }
+    .page-hero__text-wrapper .page-hero__subtitle { font-size: 0.8125rem; }
+    .page-breadcrumb { font-size: 0.75rem; }
+    
+    .content-intro { flex-direction: column; text-align: center; padding: 1.25rem; gap: 1rem; margin-bottom: 2rem; }
+    .content-intro__icon { margin: 0 auto; width: 50px; height: 50px; }
+    .content-intro__icon i { font-size: 1.25rem; }
+    .content-intro__text h2 { font-size: 1.125rem; }
+    .content-intro__text p { font-size: 0.875rem; }
+    .pelatihan-page .content-intro {
+        align-items: stretch;
+    }
+    .pelatihan-page .content-intro__text {
+        width: 100%;
+        text-align: center;
+    }
+    .pelatihan-page .content-intro__text h2,
+    .pelatihan-page .content-intro__text p {
+        text-align: center !important;
+    }
+    .pelatihan-page .content-intro__text p {
+        margin: 0 auto;
+        max-width: 34rem;
+    }
+    
+    .panduan-page .panduan-grid { grid-template-columns: 1fr; gap: 1rem; }
+    .panduan-page .panduan-card { padding: 1.25rem; gap: 1rem; }
+    .panduan-card__title { font-size: 1rem; }
+    .panduan-card__desc { font-size: 0.8125rem; }
+    
+    .alur-timeline { grid-template-columns: 1fr; gap: 1rem; }
+    .alur-step { display: flex; flex-direction: column; gap: 0.875rem; text-align: center; align-items: center; padding: 1rem; }
+    .alur-step__number { margin: 0; flex-shrink: 0; width: 40px; height: 40px; font-size: 1rem; }
+    .alur-step__content h4 { font-size: 0.9375rem; }
+    .alur-step__content p { font-size: 0.8125rem; }
+    
+    .pelatihan-page .pelatihan-grid, .pelayanan-page .layanan-grid { grid-template-columns: 1fr; }
+    .pelatihan-card__image, .layanan-card__image { height: 160px; }
+    .pelatihan-card__icon, .layanan-card__icon { width: 60px; height: 60px; margin-top: -30px; }
+    .pelatihan-card__icon:first-child, .layanan-card__icon:first-child { margin-top: 1.25rem; }
+    .pelatihan-card__icon i, .layanan-card__icon i { font-size: 1.5rem; }
+    .section-header { margin-bottom: 1.5rem; }
+    .section-subtitle { font-size: 0.9375rem; }
+    
+    .jadwal-table-wrapper, .tarif-table-wrapper { margin: 0 -1rem; border-radius: 0; }
+    .jadwal-table th, .jadwal-table td { padding: 0.75rem 1rem; font-size: 0.8125rem; }
+    
+}
+
+/* Responsive - Small Mobile */
+@media (max-width: 480px) {
+    .container { padding: 0 0.75rem; }
+    .stats-grid { gap: 0.75rem; }
+    .stat-card { padding: 1rem 0.75rem; }
+    .stat-icon { width: 44px; height: 44px; font-size: 1.125rem; }
+    .stat-number { font-size: 1.25rem; }
+    .skema-card { padding: 1.25rem 1rem; }
+    .skema-icon { width: 56px; height: 56px; font-size: 1.5rem; }
+    .panduan-card__icon { width: 52px; height: 52px; }
+    .panduan-card__icon i { font-size: 1.25rem; }
+    .alur-step { padding: 0.875rem; }
+    .alur-step__number { width: 36px; height: 36px; font-size: 1rem; }
+    .pelatihan-card__icon, .layanan-card__icon { width: 52px; height: 52px; margin-top: -26px; }
+    .pelatihan-card__icon:first-child, .layanan-card__icon:first-child { margin-top: 1rem; }
+    .pelatihan-card__icon i, .layanan-card__icon i { font-size: 1.25rem; }
+    .pelatihan-card__content, .layanan-card__content { padding: 1rem 1.25rem 1.25rem; }
+    .pelatihan-card__title, .layanan-card__title { font-size: 1rem; }
+    .pelatihan-card__desc, .layanan-card__desc { font-size: 0.875rem; }
+    .section-header { margin-bottom: 1.25rem; padding: 0 0.5rem; }
+    .section-title { font-size: 1.5rem; }
+    .section-subtitle { font-size: 0.875rem; }
+    .content-intro { padding: 1rem; gap: 0.75rem; }
+    .content-intro__text h2 { font-size: 1rem; }
+    .content-intro__text p { font-size: 0.8125rem; }
+    .pelatihan-page .content-intro__text p {
+        max-width: 100%;
+    }
+}
+
+/* Pelatihan intro alignment override (moved from inline style) */
+@media (max-width: 1024px) {
+    .pelatihan-page .content-intro {
+        flex-direction: column !important;
+        align-items: center !important;
+        text-align: center !important;
+    }
+
+    .pelatihan-page .content-intro__icon {
+        margin: 0 auto !important;
+    }
+
+    .pelatihan-page .content-intro__text,
+    .pelatihan-page .content-intro__text h2,
+    .pelatihan-page .content-intro__text p {
+        width: 100% !important;
+        text-align: center !important;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+}

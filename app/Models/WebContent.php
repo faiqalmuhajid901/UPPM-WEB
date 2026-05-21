@@ -9,11 +9,32 @@ class WebContent extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['section_key', 'title', 'description', 'image', 'additional_data'];
-    
-    // Helper untuk mengambil data JSON
-    public function getData($key, $default = null) {
-        $data = json_decode($this->additional_data, true);
-        return $data[$key] ?? $default;
+    protected $fillable = [
+        'key',
+        'title',
+        'content',
+        'type',
+        'is_active',
+    ];
+
+    protected $casts = [
+        'is_active' => 'boolean',
+    ];
+
+    /**
+     * Ambil konten berdasarkan key
+     */
+    public static function getContent(string $key): ?string
+    {
+        $content = self::where('key', $key)->where('is_active', true)->first();
+        return $content?->content;
+    }
+
+    /**
+     * Scope untuk konten aktif
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('is_active', true);
     }
 }

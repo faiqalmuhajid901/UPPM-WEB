@@ -1,11 +1,9 @@
-
-
 <?php $__env->startSection('title', 'Dashboard Admin'); ?>
 <?php $__env->startSection('page_title', 'Dashboard Admin'); ?>
 
-<?php $__env->startSection('admin_content'); ?>
+<?php $__env->startSection('content'); ?> 
 <div class="max-w-7xl mx-auto">
-    
+
     <!-- Banner Sambutan -->
     <div class="bg-gradient-to-r from-slate-800 to-slate-900 rounded-xl p-6 text-white mb-8 shadow-lg">
         <h1 class="text-2xl font-bold">Halo, <?php echo e(auth()->user()->name); ?>!</h1>
@@ -57,4 +55,5 @@
 
 </div>
 <?php $__env->stopSection(); ?>
+
 <?php echo $__env->make('layouts.admin', array_diff_key(get_defined_vars(), ['__data' => 1, '__path' => 1]))->render(); ?><?php /**PATH E:\laragon\uppm-web\resources\views/admin/dashboard.blade.php ENDPATH**/ ?>

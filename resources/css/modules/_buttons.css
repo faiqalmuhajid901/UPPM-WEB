@@ -1,0 +1,46 @@
+/* ========================================
+   BUTTONS
+   ======================================== */
+@layer components {
+    .btn {
+        @apply inline-flex items-center justify-center gap-2 px-5 py-2.5 
+               text-sm font-medium rounded-lg transition-all duration-150
+               focus:outline-none focus:ring-2 focus:ring-offset-2;
+    }
+
+    .btn-primary {
+        @apply bg-blue-600 text-white hover:bg-blue-700 focus:ring-blue-500;
+    }
+
+    .btn-secondary {
+        @apply bg-gray-600 text-white hover:bg-gray-700 focus:ring-gray-500;
+    }
+
+    .btn-success {
+        @apply bg-green-600 text-white hover:bg-green-700 focus:ring-green-500;
+    }
+
+    .btn-danger {
+        @apply bg-red-600 text-white hover:bg-red-700 focus:ring-red-500;
+    }
+
+    .btn-warning {
+        @apply bg-yellow-500 text-white hover:bg-yellow-600 focus:ring-yellow-500;
+    }
+
+    .btn-outline-primary {
+        @apply border-2 border-blue-600 text-blue-600 hover:bg-blue-600 hover:text-white;
+    }
+
+    .btn-ghost {
+        @apply text-gray-600 hover:bg-gray-100;
+    }
+
+    .btn-sm {
+        @apply px-3 py-1.5 text-xs;
+    }
+
+    .btn-lg {
+        @apply px-6 py-3 text-base;
+    }
+}

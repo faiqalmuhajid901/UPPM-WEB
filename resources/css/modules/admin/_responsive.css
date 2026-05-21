@@ -1,0 +1,78 @@
+/* ========================================
+   RESPONSIVE - TABLET & MOBILE
+   ======================================== */
+
+/* Tablet */
+@media (max-width: 1024px) {
+    .header-date {
+        display: none;
+    }
+
+    .content-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Sidebar - Hidden by default */
+    .admin-sidebar {
+        transform: translateX(-100%);
+    }
+
+    .admin-sidebar.active {
+        transform: translateX(0);
+    }
+
+    /* Main - Full width */
+    .admin-main {
+        margin-left: 0;
+    }
+
+    /* Show toggle button */
+    .sidebar-toggle-btn {
+        display: flex;
+    }
+
+    /* Header adjustments */
+    .header-title h1 {
+        font-size: 16px;
+    }
+
+    .header-user-name {
+        display: none;
+    }
+
+    .header-user-btn {
+        padding: 6px;
+    }
+
+    /* Content padding */
+    .admin-content {
+        padding: 16px;
+    }
+
+    /* Content Management */
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .content-header h2 {
+        font-size: 24px;
+    }
+}
+
+/* Small Mobile */
+@media (max-width: 480px) {
+    .admin-header {
+        padding: 0 16px;
+    }
+
+    .sidebar-brand-text {
+        font-size: 16px;
+    }
+
+    .content-card-header {
+        padding: 20px;
+    }
+}

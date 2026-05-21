@@ -4,23 +4,31 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Symfony\Component\HttpFoundation\Response;
 
 class IsAdmin
 {
     public function handle(Request $request, Closure $next): Response
     {
-        // Gunakan $request->user() untuk mengambil user login
-        // Pastikan middleware ini dijalankan setelah middleware 'auth' di web.php
-        $currentUser = $request->user();
+        // Cek apakah user sudah login
+        if (!Auth::check()) {
+            return redirect()->route('login');
+        }
 
-        // Cek apakah role user termasuk admin atau super_admin
-        if (in_array($currentUser->role, ['admin', 'super_admin'])) {
-            // Jika YA, silakan lanjut (masuk halaman admin)
+        $user = Auth::user();
+        
+        // DEBUG: Lihat nilai role di log
+        \Log::info('IsAdmin Check - Email: ' . $user->email . ', Role: ' . $user->role);
+
+        // Cek dengan berbagai kemungkinan nilai role
+        $allowedRoles = ['admin', 'superadmin', 'Admin', 'SuperAdmin', '1', '2', 1, 2];
+        
+        if (in_array($user->role, $allowedRoles, false)) {
             return $next($request);
         }
 
-        // Jika TIDAK (User biasa), lempar balik ke dashboard user
-        return redirect()->route('dashboard')->with('error', 'Anda tidak memiliki akses admin.');
+        // Jika bukan admin
+        abort(403, 'Unauthorized. Admin access only.');
     }
 }

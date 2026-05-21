@@ -1,0 +1,12 @@
+<div class="empty-state">
+    <div class="empty-icon">
+        <i class="fas fa-folder-open"></i>
+    </div>
+    <h3 class="empty-title">Belum ada konten</h3>
+    <p class="empty-text">Mulai dengan menambahkan konten baru</p>
+    <button class="btn-tambah" id="btn-tambah-empty">
+        <i class="fas fa-plus"></i>
+        Tambah Konten
+    </button>
+</div>
+<?php /**PATH \\DESKTOP-EQN4087\XAMPP8212\htdocs\uppm-web\resources\views\admin\konten\partials\empty.blade.php ENDPATH**/ ?>
